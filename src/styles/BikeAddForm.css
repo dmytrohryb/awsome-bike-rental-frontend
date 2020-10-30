@@ -1,0 +1,35 @@
+.card-content{
+    border: 1px solid rgba(255,255,255, .5);
+    padding: 20px;
+    background-color: azure;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title-card{
+    margin-bottom: 10px;
+}
+
+.input-name{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.input-type{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.input-price{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.submit{
+    display: flex;
+    flex-direction: column-reverse;
+}

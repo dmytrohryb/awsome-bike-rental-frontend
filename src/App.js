@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import React from 'react';
+import BikeAddForm from "./containers/BikeAddFormContainer";
+import OrdersContainer from "./containers/OrdersContainer";
+import AvailableBikesContainer from './containers/AvailableBikesContainer';
+import {Separator} from "./components/Separator";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {createStore} from "redux";
+import rootReducer from './store/reducers'
+import {Provider} from 'react-redux';
+
+const store = createStore(rootReducer)
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.AvailableBikes = React.createRef()
+    this.updateAvailableBikes = this.updateAvailableBikes.bind(this)
+  }
+
+  updateAvailableBikes(){
+    console.log(this.AvailableBikes.current)
+  }
+
+  render() {
+    return (
+        <Provider store={store}>
+        <div className="app-container">
+          <div className="app">
+            <header className='app-header'>
+              <h2>Awesome Bike Rental</h2>
+            </header>
+            <BikeAddForm />
+            <Separator type='vertical' value={20} />
+            <OrdersContainer updateAvailableBikes={this.updateAvailableBikes} />
+            <Separator type='vertical' value={20} />
+            <AvailableBikesContainer ref={this.AvailableBikes} />
+          </div>
+        </div>
+        </Provider>
+    );
+  }
 }
 
 export default App;

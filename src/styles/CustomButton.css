@@ -1,0 +1,68 @@
+.success {
+    background-color: #23ba99; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 140px;
+}
+
+.success:hover{
+    background-color: gray;
+    cursor: pointer;
+    width: 140px;
+}
+
+.success:active{
+    cursor: pointer;
+    background-color: lightgrey;
+    width: 140px;
+}
+
+.error {
+    background-color: #f2313f; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 140px;
+}
+
+.error:hover{
+    background-color: gray;
+    cursor: pointer;
+    width: 140px;
+}
+
+.error:active{
+    cursor: pointer;
+    background-color: lightgrey;
+    width: 140px;
+}
+
+.default {
+    background-color: #374fc7; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 140px;
+}
+
+.default:hover{
+    background-color: gray;
+    cursor: pointer;
+    width: 140px;
+}
+
+.default:active{
+    cursor: pointer;
+    background-color: lightgrey;
+    width: 140px;
+}
