@@ -9,13 +9,13 @@ class AvailableBikesContainer extends React.Component {
     }
 
     render() {
-        return <BikeAddForm data={this.props.data} changeData={this.props.changeData} />
+        return <BikeAddForm addAvailableBike={this.props.addAvailableBike} data={this.props.data} changeData={this.props.changeData} />
     }
 }
 
 const mapStateToProps = state => {
     return {
-        data: state.availableBikes.data
+        data: state.bikeAddForm.data
     }
 }
 

@@ -17,6 +17,6 @@ export class Observer {
 
     notifyAll(){
         for (let o of this.observers)
-            o.update()
+            o.getData()
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import {AvailableBikes} from "../components/AvailableBikes";
+import {AvailableBikes} from "../components/AvailableBikes/AvailableBikes";
 import {connect} from 'react-redux'
 import {changeData} from "../store/availableBikes/actions";
 
@@ -9,11 +9,12 @@ class AvailableBikesContainer extends React.Component {
     }
 
     render() {
-        return <AvailableBikes data={this.props.data} changeData={this.props.changeData} />
+        return <AvailableBikes updateTotalRent={this.props.updateTotalRent} addFormObserver={this.props.addFormObserver} ordersObserver={this.props.ordersObserver} updateOrders={this.props.updateOrders} data={this.props.data} changeData={this.props.changeData} />
     }
 }
 
 const mapStateToProps = state => {
+
     return {
         data: state.availableBikes.data
     }
