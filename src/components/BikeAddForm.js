@@ -2,9 +2,7 @@ import React from 'react'
 import '../styles/BikeAddForm.css';
 import {CustomButton} from "./CustomButton";
 import Axios from "axios";
-import { TextField } from '@material-ui/core';
-import FormControl from '@material-ui/core/FormControl';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import {FormErrors} from "./FormErrors";
 
 export class BikeAddForm extends React.Component{
     constructor(props) {
@@ -12,13 +10,16 @@ export class BikeAddForm extends React.Component{
         this.state = {
             name: '',
             type: '',
-            price: ''
+            price: '',
+            error: '',
+            priceValid: false
         }
 
         this.handleSubmitRentButtonClick = this.handleSubmitRentButtonClick.bind(this)
         this.handleChangeName = this.handleChangeName.bind(this)
         this.handleChangePrice = this.handleChangePrice.bind(this)
         this.handleChangeType = this.handleChangeType.bind(this)
+        this.validPrice = this.validPrice.bind(this)
     }
 
     componentWillMount() {
@@ -30,8 +31,18 @@ export class BikeAddForm extends React.Component{
         this.setState({name: e.target.value})
     }
 
+    validPrice(){
+        if(!isNaN(this.state.price)){
+            this.setState({priceValid: true, error: ''})
+        }else{
+            this.setState({priceValid: false, error: 'Price is not valid!'})
+        }
+    }
+
     handleChangePrice(e){
-        this.setState({price: e.target.value})
+        this.setState({price: e.target.value}, () => {
+            this.validPrice()
+        })
     }
 
     handleChangeType(e){
@@ -39,36 +50,42 @@ export class BikeAddForm extends React.Component{
     }
 
     handleSubmitRentButtonClick(){
-        Axios.post('http://localhost:4002/bikes', {
-            name: this.state.name,
-            type: this.state.type,
-            price: this.state.price
-        })
-            .then(res => {
-                this.props.addAvailableBike()
+        if(this.state.priceValid){
+            Axios.post('http://localhost:4002/bikes', {
+                name: this.state.name,
+                type: this.state.type,
+                price: this.state.price
             })
+                .then(res => {
+                    if(res.status === 201){
+                        this.props.addAvailableBike()
+                        this.setState({error: ''})
+                    }
+                })
+                .catch(err => {
+                    this.setState({error: err.response.data['msg']})
+                })
+        }
     }
 
     render() {
         return<>
-            <div className="title-card">
-                Create new rent
+            <div className="form-title">
+                &#x1F911; Create new rent
             </div>
-            <div className="card-content">
+            <FormErrors error={this.state.error} />
+            <div className="form-content">
                 <div className="input-name">
                     <label htmlFor="bn">Bike name</label>
-                    <TextField size={"small"} id="outlined-basic" variant="outlined" onChange={this.handleChangeName} />
-
+                    <input id='bn' value={this.state.name} onChange={this.handleChangeName} />
                 </div>
 
                 <div className="input-type">
                     <label htmlFor="bt">Bike type</label>
-                    <FormControl>
-
-                        <NativeSelect
-                            id="demo-customized-select-native"
+                        <select
+                            id="bt"
+                            value={this.state.type}
                             onChange={this.handleChangeType}
-                            variant="outlined"
                         >
                             <option aria-label="None" value="" />
                             {
@@ -76,16 +93,15 @@ export class BikeAddForm extends React.Component{
                                     <option key={l.id} value={l.id}>{l.name}</option>
                                 )
                             }
-                        </NativeSelect>
-                    </FormControl>
+                        </select>
                 </div>
 
                 <div className="input-price">
                     <label htmlFor="rp">Rent price</label>
-                    <TextField size={"small"} id="outlined-basic" variant="outlined" onChange={this.handleChangePrice} />
+                    <input id='rp' value={this.state.price} onChange={this.handleChangePrice} />
                 </div>
 
-                <div className="submit">
+                <div className="submit-section">
                     <CustomButton onClick={this.handleSubmitRentButtonClick} name='Submit rent' type='success' />
                 </div>
             </div>

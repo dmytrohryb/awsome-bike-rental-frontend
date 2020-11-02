@@ -1,7 +1,8 @@
 import React from 'react'
-import '../../styles/AvailableBicycles.css';
 import Axios from "axios";
 import {AvailableBikeCard} from "./AvailableBikeCard";
+import '../../styles/AvailableBikes.css'
+import {Separator} from "../Separator";
 
 export class AvailableBikes extends React.Component {
     constructor(props) {
@@ -29,12 +30,15 @@ export class AvailableBikes extends React.Component {
 
     handleDeleteButtonClick(id){
         Axios.delete('http://localhost:4002/bikes', {params:{id: id}})
-            .then(res => {this.getData()})
+            .then(res => {
+                this.getData()
+            })
     }
 
     handleRentButtonClick(id, price, countHours){
+        console.log(price / 2)
         Axios.post('http://localhost:4002/orders', {
-            quantity: (countHours >= 20) ? price / 2 : price,
+            discountPrice: (countHours >= 20) ? price / 2 : price,
             countHours: countHours,
             bikeId: id
         })
@@ -47,12 +51,14 @@ export class AvailableBikes extends React.Component {
 
     render() {
         return<>
-            <div className="title-card">
-                Available bicycles
+            <div className='available-title'>
+                &#x1F6B2; Available bikes ({this.props.data.length})
             </div>
             {
-                this.props.data.map((l, i) =>
+                this.props.data.map((l, i) => <>
+                    <Separator type='vertical' value={10}/>
                     <AvailableBikeCard
+                        className='available-card'
                         handleDelete={this.handleDeleteButtonClick}
                         handleRent={this.handleRentButtonClick}
                         key={i}
@@ -61,6 +67,7 @@ export class AvailableBikes extends React.Component {
                         type={l.type}
                         price={l.price}
                     />
+                    </>
                 )
             }
         </>

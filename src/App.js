@@ -5,10 +5,9 @@ import OrdersContainer from "./containers/OrdersContainer";
 import AvailableBikesContainer from './containers/AvailableBikesContainer';
 import {Separator} from "./components/Separator";
 import {createStore} from "redux";
-import rootReducer from './store/reducers'
+import rootReducer from './store/reducers';
 import {Provider} from 'react-redux';
-
-import {Observer} from './Observer'
+import {Observer} from './Observer';
 
 const store = createStore(rootReducer)
 

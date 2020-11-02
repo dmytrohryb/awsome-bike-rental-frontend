@@ -1,0 +1,19 @@
+.available-card{
+    border: 1px solid lightgrey;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.available-title{
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    .available-card{
+        display: block;
+    }
+}

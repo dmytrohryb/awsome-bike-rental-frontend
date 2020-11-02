@@ -1,13 +1,15 @@
 import React from 'react'
-import '../../styles/RentViewForm.css';
-import {CustomButton} from "../CustomButton";
+import '../../styles/Orders.css';
 import Axios from "axios";
 import TotalRent from '../../containers/TotalRentContainer';
+import {OrderCard} from "./OrderCard";
+import {Separator} from "../Separator";
 
 export class Orders extends React.Component{
     constructor(props) {
         super(props);
         this.getData = this.getData.bind(this)
+        this.handleClickCancel = this.handleClickCancel.bind(this)
     }
 
     componentWillMount() {
@@ -37,22 +39,14 @@ export class Orders extends React.Component{
 
     render() {
         return<>
-            <div className="title-card">
-                <TotalRent totalRentObserver={this.props.totalRentObserver} />
+            <div className="order-title">
+                &#x1F929; <TotalRent totalRentObserver={this.props.totalRentObserver} />
             </div>
             {
-                this.props.data.map((l, i) =>
-                    <div key={i} className="card">
-                        <div className="content">
-                            {l.name} / {l.type} / {l.price}$
-                        </div>
-                        <div className="actions">
-                            <div>
-                                Hours: {l.countHours}
-                            </div>
-                            <CustomButton onClick={() => this.handleClickCancel(l.id)} name='Cancel rent' type='error'/>
-                        </div>
-                    </div>
+                this.props.data.map((l, i) =><>
+                    <Separator type='vertical' value={10}/>
+                    <OrderCard handleClickCancel={this.handleClickCancel} className='order-card' key={i} name={l.name} type={l.type} price={l.price} countHours={l.countHours} id={l.id}/>
+                    </>
                 )
             }
         </>

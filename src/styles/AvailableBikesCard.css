@@ -1,0 +1,57 @@
+.input-hours{
+    width: 20px;
+    text-align: center;
+}
+
+.input-hours-block{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.right-side{
+    display: flex;
+    flex-direction: row;
+}
+
+.text-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.button-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .right-side{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .text-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .button-group{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .input-hours{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .input-hours-block{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}

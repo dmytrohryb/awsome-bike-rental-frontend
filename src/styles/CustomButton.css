@@ -7,18 +7,17 @@
     text-decoration: none;
     display: inline-block;
     width: 140px;
+    border-radius: 5px;
 }
 
 .success:hover{
     background-color: gray;
     cursor: pointer;
-    width: 140px;
 }
 
 .success:active{
     cursor: pointer;
     background-color: lightgrey;
-    width: 140px;
 }
 
 .error {
@@ -30,18 +29,17 @@
     text-decoration: none;
     display: inline-block;
     width: 140px;
+    border-radius: 5px;
 }
 
 .error:hover{
     background-color: gray;
     cursor: pointer;
-    width: 140px;
 }
 
 .error:active{
     cursor: pointer;
     background-color: lightgrey;
-    width: 140px;
 }
 
 .default {
@@ -53,16 +51,15 @@
     text-decoration: none;
     display: inline-block;
     width: 140px;
+    border-radius: 5px;
 }
 
 .default:hover{
     background-color: gray;
     cursor: pointer;
-    width: 140px;
 }
 
 .default:active{
     cursor: pointer;
     background-color: lightgrey;
-    width: 140px;
 }
