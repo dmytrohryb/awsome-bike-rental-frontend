@@ -17,7 +17,7 @@ export class TotalRent extends React.Component{
     }
 
     getData(){
-        Axios.get('http://localhost:4002/orders')
+        Axios.get('https://awesomebikerental.herokuapp.com/orders')
             .then(res => {this.props.changeData(res.data[0])})
     }
 

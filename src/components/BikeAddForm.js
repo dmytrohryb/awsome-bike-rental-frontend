@@ -23,7 +23,7 @@ export class BikeAddForm extends React.Component{
     }
 
     componentWillMount() {
-        Axios.get('http://localhost:4002/types')
+        Axios.get('https://awesomebikerental.herokuapp.com/types')
             .then(res => {this.props.changeData(res.data)})
     }
 
@@ -51,7 +51,7 @@ export class BikeAddForm extends React.Component{
 
     handleSubmitRentButtonClick(){
         if(this.state.priceValid){
-            Axios.post('http://localhost:4002/bikes', {
+            Axios.post('https://awesomebikerental.herokuapp.com/bikes', {
                 name: this.state.name,
                 type: this.state.type,
                 price: this.state.price

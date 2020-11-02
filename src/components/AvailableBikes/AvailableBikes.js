@@ -2,7 +2,6 @@ import React from 'react'
 import Axios from "axios";
 import {AvailableBikeCard} from "./AvailableBikeCard";
 import '../../styles/AvailableBikes.css'
-import {Separator} from "../Separator";
 
 export class AvailableBikes extends React.Component {
     constructor(props) {
@@ -24,12 +23,12 @@ export class AvailableBikes extends React.Component {
     }
 
     getData(){
-        Axios.get('http://localhost:4002/bikes', {params: {available: true}})
+        Axios.get('https://awesomebikerental.herokuapp.com/bikes', {params: {available: true}})
             .then(res => {this.props.changeData(res.data)})
     }
 
     handleDeleteButtonClick(id){
-        Axios.delete('http://localhost:4002/bikes', {params:{id: id}})
+        Axios.delete('https://awesomebikerental.herokuapp.com/bikes', {params:{id: id}})
             .then(res => {
                 this.getData()
             })
@@ -37,7 +36,7 @@ export class AvailableBikes extends React.Component {
 
     handleRentButtonClick(id, price, countHours){
         console.log(price / 2)
-        Axios.post('http://localhost:4002/orders', {
+        Axios.post('https://awesomebikerental.herokuapp.com/orders', {
             discountPrice: (countHours >= 20) ? price / 2 : price,
             countHours: countHours,
             bikeId: id
@@ -55,8 +54,7 @@ export class AvailableBikes extends React.Component {
                 &#x1F6B2; Available bikes ({this.props.data.length})
             </div>
             {
-                this.props.data.map((l, i) => <>
-                    <Separator type='vertical' value={10}/>
+                this.props.data.map((l, i) =>
                     <AvailableBikeCard
                         className='available-card'
                         handleDelete={this.handleDeleteButtonClick}
@@ -67,7 +65,6 @@ export class AvailableBikes extends React.Component {
                         type={l.type}
                         price={l.price}
                     />
-                    </>
                 )
             }
         </>

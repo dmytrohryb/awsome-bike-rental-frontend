@@ -32,6 +32,7 @@ export class AvailableBikeCard extends React.Component {
 
     render() {
         return<>
+            <Separator type='vertical' value={10}/>
             <FormErrors error={this.state.error} />
             <div className={this.props.className}>
             <div className="text-card">

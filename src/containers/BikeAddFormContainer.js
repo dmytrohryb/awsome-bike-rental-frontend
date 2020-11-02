@@ -4,9 +4,6 @@ import {connect} from 'react-redux'
 import {changeData} from "../store/bikeAddForm/actions";
 
 class AvailableBikesContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return <BikeAddForm addAvailableBike={this.props.addAvailableBike} data={this.props.data} changeData={this.props.changeData} />

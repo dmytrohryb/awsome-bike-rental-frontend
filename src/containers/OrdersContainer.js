@@ -4,9 +4,6 @@ import {connect} from 'react-redux'
 import {changeData} from "../store/orders/actions";
 
 class OrdersContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return <Orders updateTotalRent={this.props.updateTotalRent} totalRentObserver={this.props.totalRentObserver} availableObserver={this.props.availableObserver} data={this.props.data} updateAvailableBikes={this.props.updateAvailableBikes} changeData={this.props.changeData} />

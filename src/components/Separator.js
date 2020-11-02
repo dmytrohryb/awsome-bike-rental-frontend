@@ -1,10 +1,6 @@
 import React from 'react'
 
 export class Separator extends React.Component{
-    constructor(props) {
-        super(props);
-
-    }
 
     render() {
         return (this.props.type === 'vertical') ?
